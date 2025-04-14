@@ -1,1 +1,1 @@
-#Movie Tracker Project for INFO 1601
+# Lord of the Strings - Movie Tracker
