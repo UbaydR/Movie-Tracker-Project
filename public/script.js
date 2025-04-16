@@ -54,3 +54,22 @@ async function getData() {
   }
 
 getData();
+
+// Back to top button functionality
+const backToTopButton = document.getElementById('backToTop');
+
+// Show button when user scrolls down 300px
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        backToTopButton.style.opacity = '1';
+    } else {
+        backToTopButton.style.opacity = '0';
+    }
+});
+
+// Scroll to top when button is clicked
+backToTopButton.addEventListener('click', () => {
+    window.scrollTo(
+        {top: 0, behavior: 'smooth'}
+    );
+});
