@@ -43,4 +43,15 @@ function showMovies(movies) {
     
     // Add click event listeners to all movie cards
     addMovieCardClickListeners();
-}
+} 
+
+//function to get movie data from api
+async function getData() {
+    const response = await fetch(url, options);
+    const result = await response.json();
+    state = result; 
+    showMovies(result);
+  }
+
+
+getData();
