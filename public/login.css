@@ -1,32 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LoTS - Login</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="login.css">
-</head>
-<body>
-    <header>
-        <a href="index.html"><button>Home</button></a>
-    </header>
-    <div class="login-box">
-        <h1>Login</h1>
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input id="username" name="username" type="email" placeholder="Enter email">
-                <div class="error-message">Please enter a valid email address</div>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input id="password" name="password" type="password" required minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}" placeholder="Enter password">
-                <div class="error-message">Password must be at least 8 characters long and include uppercase, lowercase, numbers, and special characters</div>
-            </div>
-            <input type="submit" value="Log In" class="submit-btn" id="login-btn"></input>
-        </form>
-    </div>
-    <script type="module" src="auth.js"></script>
-</body>
-</html>
+.login-box {
+    background-color: #2d2d2d;
+    padding: 30px 35px 50px 35px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+}
+.login-box h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 1.5rem;
+    font-size: 24px;
+}
+.form-group {
+    margin-bottom: 1rem;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+.form-group input:focus {
+    outline: none;
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+}
+.submit-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.submit-btn:hover {
+    background-color: #1557b0;
+}
+.error-message {
+    color: #d93025;
+    font-size: 14px;
+    margin-top: 0.25rem;
+    display: none;
+}
+input:invalid:not(:placeholder-shown) + .error-message {
+    display: block;
+}

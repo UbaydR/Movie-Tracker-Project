@@ -53,5 +53,4 @@ async function getData() {
     showMovies(result);
   }
 
-
 getData();
