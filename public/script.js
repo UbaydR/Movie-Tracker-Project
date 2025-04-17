@@ -55,4 +55,42 @@ async function getData() {
 
 
 getData();
+
+function filterByGenre(genres) {
+    let filtered = [];
+    
+      for(let movie of state){
+      
+        if (movie.genres[0] === genres)
+          filtered.push(movie);
+      }
+      showMovies(filtered);
+  }
+  
+  window.filterByGenre = filterByGenre;
+  
+
+  function searchMovie() {
+    let searchKey = document.querySelector('#searchKey').value;
+    let results = [];
+
+    for (let movie of state) {
+        //capitalize the search term and text
+        let movieTitle = movie.primaryTitle.toUpperCase();
+        searchKey = searchKey.toUpperCase();
+
+        //add to resulting array if search term is in the title
+        if (movieTitle.search(searchKey) !== -1) {
+            results.push(movie);
+        }
+    }
+
+    //show the search results
+    showMovies(results);
+}
+
+
+//add event listener for search input
+document.querySelector('#searchKey').addEventListener('input', searchMovie);
+
 }
