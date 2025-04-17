@@ -6,8 +6,7 @@
 }
 
 body {
-    background-color: #1a1a1a;
-    color: white;
+    background-color: #262626;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -20,9 +19,9 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 20px; 
-    background-color: #2d2d2d;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    background-color: #171717;
     margin-bottom: 2rem;
+    position: relative;
 }
 
 header button {
@@ -32,18 +31,19 @@ header button {
     padding: 0.5rem 1rem;
     cursor: pointer;
     transition: color 0.3s ease;
+    border-radius: 5px;
 }
 
 header button:hover {
-    color: #00a8ff;
+    color: black;
+    background-color: white;
 }
 
 header input {
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 20px;
-    background-color: #404040;
-    color: white;
+    background-color: white;
     width: 400px;
 }
 
@@ -65,7 +65,7 @@ header input::placeholder {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #2d2d2d;
+    background-color: #262626;
     min-width: 160px;
     box-shadow: 0 8px 16px rgba(0,0,0,0.2);
     border-radius: 5px;
@@ -84,9 +84,23 @@ header input::placeholder {
 }
 
 .genre-list button:hover {
-    background-color: #404040;
+    background-color: #0a5e76;
+    color: white;
 }
 
+#login-link {
+    background-color: #0a5e76;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 800;
+    color: white;
+    align-items: center;
+}
 
 #container { 
     display: flex;
@@ -99,17 +113,19 @@ header input::placeholder {
 .movie-card {
     height: 600px;
     width: 350px;
-    background-color: #2d2d2d;
-    border-radius: 10px;
+    background-color: #171717;
+    border-radius: 5px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid;
 }
 
 
 .movie-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
 }
 
 .movie-card img {
@@ -135,31 +151,54 @@ header input::placeholder {
 
 .movie-info-box p {
     font-size: 0.9rem;
-    color: #00a8ff;
     margin: 0;
+    color: #D4D4D4;
     font-weight: normal;
 }
 
 .movie-card-buttons {
     padding-bottom: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
 }
+
 .movie-card-buttons button {
-    background-color: #00a8ff;
+    background-color: #07475a;
     color: white;
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.5rem;
     border-radius: 5px;
     cursor: pointer;
-    margin-right: 0.5rem;
+    margin-right: 0.25rem;
     transition: background-color 0.3s ease;
+    flex: 1;
+    font-size: 0.9rem;
+    white-space: nowrap;
 }
 
-.movie-card-buttons button:hover {
-    background-color: #0097e6;
+.like-btn:hover {
+    background-color: #ff8000;
 }
 
-.movie-card-buttons button.active {
-    background-color: #4CAF50;
+.watchlist-btn:hover {
+    background-color: #00e054;
+}
+
+.watch-btn:hover {
+    background-color: #40bcf4;
+}
+
+.like-btn.active {
+    background-color: #ff8000;
+}
+
+.watchlist-btn.active {
+    background-color: #00e054;
+}
+
+.watch-btn.active {
+    background-color: #40bcf4;
 }
 
 #backToTop {
