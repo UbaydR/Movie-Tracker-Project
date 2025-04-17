@@ -1,0 +1,82 @@
+.profile-container {
+    width: 1200px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #2d2d2d;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.movies-section {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.profile-info {
+    padding: 1rem;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    max-width: 70%;
+}
+
+.profile-info h1 {
+    text-align: left;
+    margin-bottom: 1rem;
+    color: white;
+    font-size: 24px;
+}
+
+.profile-info p {
+    font-size: 18px;
+    margin: 0.5rem 0;
+    color: white;
+}
+
+#logout-btn {
+    display: block;
+    width: auto;
+    padding: 0.8rem 1.5rem;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#logout-btn:hover {
+    background-color: #c9302c;
+}
+
+.movies-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.movies-grid .movie-card {
+    width: 300px;
+    height: 500px;
+    transition: transform 0.3s ease;
+}
+
+.movies-grid .movie-card:hover {
+    transform: translateY(-10px);
+}
+
+.movies-grid .no-movies {
+    color: #888;
+    font-size: 1.1rem;
+    width: 100%;
+    text-align: center;
+    padding: 2rem;
+}
+
