@@ -160,4 +160,20 @@ header input::placeholder {
 
 .movie-card-buttons button.active {
     background-color: #4CAF50;
+
+    #backToTop {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #00a8ff;
+        color: white;
+        border: none;
+        border-radius: 25px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+        opacity: 0;
+        z-index: 1000;
+    }
+    
 }
