@@ -363,4 +363,151 @@ function addMovieCardClickListeners() {
 
 
 
+} 
+
+// Update button states based on liked, watchlist, and watched arrays
+function updateButtonStates() {
+    const likeButtons = document.querySelectorAll('.like-btn');
+    const watchlistButtons = document.querySelectorAll('.watchlist-btn');
+    const watchButtons = document.querySelectorAll('.watch-btn');
+    
+    // Update like buttons
+    for (let i = 0; i < likeButtons.length; i++) {
+        const button = likeButtons[i];
+        const movieId = button.getAttribute('data-id');
+        
+        // Check if this movie is liked
+        let isLiked = false;
+        for (let j = 0; j < likedMovies.length; j++) {
+            if (likedMovies[j] === movieId) {
+                isLiked = true;
+                break;
+            }
+        }
+        
+        if (isLiked) {
+            button.classList.add('active');
+            button.textContent = 'Liked';
+        } else {
+            button.classList.remove('active');
+            button.textContent = 'Like';
+        }
+    }
+    
+    // Update watchlist buttons
+    for (let i = 0; i < watchlistButtons.length; i++) {
+        const button = watchlistButtons[i];
+        const movieId = button.getAttribute('data-id');
+        
+        // Check if this movie is in watchlist
+        let isInWatchlist = false;
+        for (let j = 0; j < watchlistMovies.length; j++) {
+            if (watchlistMovies[j] === movieId) {
+                isInWatchlist = true;
+                break;
+            }
+        }
+        
+        if (isInWatchlist) {
+            button.classList.add('active');
+            button.textContent = 'In Watchlist';
+        } else {
+            button.classList.remove('active');
+            button.textContent = 'Watchlist';
+        }
+    }
+    
+    // Update watch buttons
+    for (let i = 0; i < watchButtons.length; i++) {
+        const button = watchButtons[i];
+        const movieId = button.getAttribute('data-id');
+        
+        // Check if this movie is watched
+        let isWatched = false;
+        for (let j = 0; j < watchedMovies.length; j++) {
+            if (watchedMovies[j] === movieId) {
+                isWatched = true;
+                break;
+            }
+        }
+        
+        if (isWatched) {
+            button.classList.add('active');
+            button.textContent = 'Watched';
+        } else {
+            button.classList.remove('active');
+            button.textContent = 'Watch';
+        }
+    }
+} 
+
+// Fetch liked, watchlist, and watched movies from Firebase on page load
+async function fetchUserMoviesFromFirebase(userId) {
+    try {
+        const userDocRef = doc(db, "users", userId);
+        const userDoc = await getDoc(userDocRef);
+        
+        if (userDoc.exists()) {
+            const userData = userDoc.data();
+            
+            // Check if the movies object exists, if not, create it
+            if (!userData.movies) {
+                await updateDoc(userDocRef, {
+                    movies: {
+                        liked: [],
+                        watchlist: [],
+                        watched: []
+                    }
+                });
+                likedMovies = [];
+                watchlistMovies = [];
+                watchedMovies = [];
+            } else {
+                // Get the movie arrays from Firebase
+                likedMovies = userData.movies.liked || [];
+                watchlistMovies = userData.movies.watchlist || [];
+                watchedMovies = userData.movies.watched || [];
+            }
+            
+            // Store in sessionStorage for current session
+            sessionStorage.setItem('likedMovies', likedMovies.join(','));
+            sessionStorage.setItem('watchlistMovies', watchlistMovies.join(','));
+            sessionStorage.setItem('watchedMovies', watchedMovies.join(','));
+            
+            console.log("User movie preferences loaded from Firebase:", {
+                liked: likedMovies.length,
+                watchlist: watchlistMovies.length,
+                watched: watchedMovies.length
+            });
+        } else {
+            console.log("No user document found in Firestore. Creating a new one.");
+            // Create a new user document if it doesn't exist
+            await setDoc(doc(db, "users", userId), {
+                movies: {
+                    liked: [],
+                    watchlist: [],
+                    watched: []
+                },
+                timestamp: new Date().getTime()
+            });
+            
+            likedMovies = [];
+            watchlistMovies = [];
+            watchedMovies = [];
+            
+            sessionStorage.setItem('likedMovies', '');
+            sessionStorage.setItem('watchlistMovies', '');
+            sessionStorage.setItem('watchedMovies', '');
+        }
+    } catch (error) {
+        console.error("Error fetching user movies from Firebase:", error);
+        // empty arrays if there's an error
+        likedMovies = [];
+        watchlistMovies = [];
+        watchedMovies = [];
+        
+        sessionStorage.setItem('likedMovies', '');
+        sessionStorage.setItem('watchlistMovies', '');
+        sessionStorage.setItem('watchedMovies', '');
+    }
 }
