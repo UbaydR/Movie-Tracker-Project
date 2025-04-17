@@ -22,20 +22,18 @@
                     <li><button onclick="filterByGenre('Biography')">Biography</button></li>
                 </ul>
             </div>
-            <a href="login.html"><button>Login</button></a>
-           
-<a href="profile.html" id="profile-link" style="display: none;"><button>Profile</button></a>
+            <a href="login.html" id="login-link"><button>Login</button></a>
+            <a href="profile.html" id="profile-link" style="display: none;"><button>Profile</button></a>
         </section>
-        <section>
-            <input type="search" id="searchKey" placeholder="Search">
-        </section>
+        <h1 class="title">Lord of the Strings</h1>
+        <input type="search" id="searchKey" placeholder="Search">
     </header>
     <main>
         <div id="container">
         </div> 
     </main>
     <button id="backToTop">Top</button> 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
     <script>
         // Check if user is logged in
         document.addEventListener('DOMContentLoaded', () => {
