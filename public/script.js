@@ -226,7 +226,7 @@ function addMovieCardClickListeners() {
           }
       }
       
-      // check for either Firebase user or hardcoded bob user
+      // check for Firebase user 
       const user = auth.currentUser;
       const isBobLoggedIn = localStorage.getItem('loggedInUserId') === "hardcoded_bob_user" && 
                             localStorage.getItem('username') === "bob";
@@ -237,7 +237,6 @@ function addMovieCardClickListeners() {
       }
       
       if (isBobLoggedIn) {
-          // for bob user, just use session storage, no Firebase
           if (!isLiked) {
               likedMovies.push(movieId);
               buttonElement.classList.add('active');
@@ -290,7 +289,7 @@ function addMovieCardClickListeners() {
           }
       }
       
-      // check for either Firebase user or hardcoded bob user
+      // check for Firebase user
       const user = auth.currentUser;
       const isBobLoggedIn = localStorage.getItem('loggedInUserId') === "hardcoded_bob_user" && 
                             localStorage.getItem('username') === "bob";
@@ -301,7 +300,6 @@ function addMovieCardClickListeners() {
       }
       
       if (isBobLoggedIn) {
-          // for bob user, just use session storage, no Firebase
           if (!isInWatchlist) {
               watchlistMovies.push(movieId);
               buttonElement.classList.add('active');
@@ -354,7 +352,7 @@ function addMovieCardClickListeners() {
           }
       }
       
-      // check for either Firebase user or hardcoded bob user
+      // check for Firebase user
       const user = auth.currentUser;
       const isBobLoggedIn = localStorage.getItem('loggedInUserId') === "hardcoded_bob_user" && 
                             localStorage.getItem('username') === "bob";
@@ -365,7 +363,6 @@ function addMovieCardClickListeners() {
       }
       
       if (isBobLoggedIn) {
-          // for bob user, just use session storage, no Firebase
           if (!isWatched) {
               watchedMovies.push(movieId);
               buttonElement.classList.add('active');
@@ -558,7 +555,6 @@ async function fetchUserMoviesFromFirebase(userId) {
 
 // On page load, check authentication and fetch user movies
 document.addEventListener('DOMContentLoaded', () => {
-    // Check for hardcoded bob user first
     const loggedInUserId = localStorage.getItem('loggedInUserId');
     const username = localStorage.getItem('username');
     

@@ -62,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // Function to display user email
 async function displayUserEmail(userId) {
     try {
-        // Check if this is the hardcoded bob user
         if (userId === "hardcoded_bob_user" && localStorage.getItem('username') === "bob") {
             document.getElementById('user-email').textContent = "bob";
             return;
@@ -105,7 +104,6 @@ async function displayLikedMovies() {
     const userId = localStorage.getItem('loggedInUserId');
     if (!userId) return;
 
-    // Check if this is bob user
     let likedMovies = [];
     if (userId === "hardcoded_bob_user" && localStorage.getItem('username') === "bob") {
         // For bob, get data from sessionStorage
@@ -139,7 +137,6 @@ async function displayWatchlistMovies() {
     const userId = localStorage.getItem('loggedInUserId');
     if (!userId) return;
 
-    // Check if this is bob user
     let watchlistMovies = [];
     if (userId === "hardcoded_bob_user" && localStorage.getItem('username') === "bob") {
         // For bob, get data from sessionStorage
@@ -173,7 +170,6 @@ async function displayWatchedMovies() {
     const userId = localStorage.getItem('loggedInUserId');
     if (!userId) return;
 
-    // Check if this is bob user
     let watchedMovies = [];
     if (userId === "hardcoded_bob_user" && localStorage.getItem('username') === "bob") {
         // For bob, get data from sessionStorage

@@ -180,7 +180,7 @@ async function toggleLike(movieId) {
         }
     }
     
-    // Check if user is logged in (Firebase user or hardcoded bob)
+    // Check if user is logged in
     const user = auth.currentUser;
     const isBobLoggedIn = localStorage.getItem('loggedInUserId') === "hardcoded_bob_user" && 
                           localStorage.getItem('username') === "bob";
@@ -191,7 +191,6 @@ async function toggleLike(movieId) {
     }
     
     if (isBobLoggedIn) {
-        // For bob user, just use sessionStorage, no Firebase
         if (!isLiked) {
             // Add to liked movies
             likedMovies.push(movieId);
@@ -260,7 +259,7 @@ async function toggleWatchlist(movieId) {
         }
     }
     
-    // Check if user is logged in (Firebase user or hardcoded bob)
+    // Check if user is logged in
     const user = auth.currentUser;
     const isBobLoggedIn = localStorage.getItem('loggedInUserId') === "hardcoded_bob_user" && 
                           localStorage.getItem('username') === "bob";
@@ -271,7 +270,6 @@ async function toggleWatchlist(movieId) {
     }
     
     if (isBobLoggedIn) {
-        // For bob user, just use sessionStorage, no Firebase
         if (!isInWatchlist) {
             // Add to watchlist movies
             watchlistMovies.push(movieId);
@@ -411,6 +409,24 @@ function updateButtonStates() {
     const watchedButton = document.getElementById('watched-button');
     const movieId = currentMovie.id;
     
+    // Check if user is logged in
+    const user = auth.currentUser;
+    const isBobLoggedIn = localStorage.getItem('loggedInUserId') === "hardcoded_bob_user" && 
+                          localStorage.getItem('username') === "bob";
+    const isLoggedIn = user || isBobLoggedIn;
+    
+    // If user is not logged in, ensure buttons are not active
+    if (!isLoggedIn) {
+        likeButton.textContent = 'Like';
+        likeButton.classList.remove('active');
+        watchlistButton.textContent = 'Add to Watchlist';
+        watchlistButton.classList.remove('active');
+        watchedButton.textContent = 'Mark as Watched';
+        watchedButton.classList.remove('active');
+        return; // Exit the function early
+    }
+    
+    // Only proceed to check movie status if user is logged in
     // Check if movie is liked
     let isLiked = false;
     for (let i = 0; i < likedMovies.length; i++) {
