@@ -23,6 +23,8 @@
                 </ul>
             </div>
             <a href="login.html"><button>Login</button></a>
+            (<a href="login.html"><button>Login</button></a>)
+<a href="profile.html" id="profile-link" style="display: none;"><button>Profile</button></a>
         </section>
         <section>
             <input type="search" id="searchKey" placeholder="Search">
@@ -34,5 +36,24 @@
     </main>
     <button id="backToTop">Top</button> 
     <script src="script.js"></script>
+    <script>
+        // Check if user is logged in
+        document.addEventListener('DOMContentLoaded', () => {
+            const userId = localStorage.getItem('loggedInUserId');
+            const loginLink = document.getElementById('login-link');
+            const profileLink = document.getElementById('profile-link');
+            
+            if (userId) {
+                // User is logged in, show profile button
+                loginLink.style.display = 'none';
+                profileLink.style.display = 'inline-block';
+            } else {
+                // User is not logged in, show login button
+                loginLink.style.display = 'inline-block';
+                profileLink.style.display = 'none';
+            }
+        });
+    </script>
+
 </body>
 </html>

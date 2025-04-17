@@ -93,4 +93,6 @@ function filterByGenre(genres) {
 //add event listener for search input
 document.querySelector('#searchKey').addEventListener('input', searchMovie);
 
+
+
 }
